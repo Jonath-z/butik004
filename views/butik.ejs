@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butik</title>
+</head>
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+    <div class="uplodadingFile">
+        <span>File</span>
+        <input type="file" name="imageFile" id="File">
+    </div>
+    <div class="uploadingSize">
+        <label for="text">size</label>
+        <input type="range" name="size" id="size">    
+    </div>
+    <div class="uploadingModel">
+        <label for="model">Model</label>
+        <input type="text" name="model" id="Model">
+    </div>
+    <div>
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price">
+    </div>
+    <div>
+        <button type="submit">Post on Butik</button>
+    </div>
+    <%= typeof msg != 'undefined' ? msg : '' %> 
+</form> 
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butik|Jordan 6</title>
+</head>
+<body>
+    <header>
+        <h1>Butik</h1>
+        <p class="blackColor">-<span>BLACK COLOR</span> -Entertainment-</p>
+    </header>
+    <section class="markContainer">
+        <h4>Our Products</h4>
+        <hr>
+        <p id="airForce">Air Force1</p>
+        <p id="airJordan1">Air Jordan1</p>
+        <p id="airNike">Air Nike</p>
+        <p id="puma">Puma</p>
+        <p id="boost">Boost</p>
+        <p id="jordan6">Jordan6</p>
+        <p id="jordan4">Jordan4</p>
+        <p id="jordan3">Jordan3</p>
+        <p id="jordan11">Jordan11</p>
+        <p id="jordan13">Jordan13</p>
+        <p id="timberland">Timberland</p>
+    </section>
+    <section class="products">
+         <section class="shoesContainer">
+         </section>
+    </section>
+        <section class="shoesContainer">
+         <% for( let i = 0; i < imgData.length; i++ ) { %>
+           <%- `<div class="shoes"><img src="/public/${imgData[i]}" alt="Image"><br><p class="shoesInformation"></p><hr></div>` %> 
+         <% } %>
+         </section>
+    <hr>
+    <footer class="footer">
+        <div class="copyright_container">
+            <p>&copy;Jonathan Zihindula 2021</p>
+        </div>
+        <div class="contact_container">
+            <h5>Contact us:</h5>
+            <ul>
+                <li><a href="#">Instagram</a></li>
+                <li><a id="faceboock">Facebook</a></li>
+                <li><a href="mailto:blackcolorent@gmail.com">Email</a></li>
+                <li><a href="tel:+2507810980810">WhatsApp</a></li>
+                <li><a href="about.html">About us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- <script src="/statics/product.js"></script> -->
+</body>
+</html>
