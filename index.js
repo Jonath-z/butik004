@@ -4,48 +4,45 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const Datastore = require('nedb');
+const eventEmitter = require('events');
+const Events = new eventEmitter();
 const app = express();
 
 app.set('view engine', 'ejs');
-
-
 
 app.use('/statics', express.static(path.join(__dirname, '/js_file')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/public', express.static(path.join('./uploads_Jordan1')));
 app.use('/public', express.static(path.join('./uploads_Airforce1')));
+   
+
+// set database
+const database2 = new Datastore('descript.db');
+database2.loadDatabase();
 
 const AirF = 'Air force 1';
 const AirJ = 'Jordan 1';
-   
-        
+
         // set storage
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        switch (req.body.model) {
-            case AirF:
-                cb(null,'./uploads_Airforce1/');
-                break;
-            case AirJ:
-                cb(null,'./uploads_Jordan1/');
-                break;
-        }
-        console.log(req);
+        cb(null, './uploads_Airforce1/');
     },
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
-        //  init upload
+                //  init upload
 const upload = multer({
     storage: storage,
     limits: { filesize: 3000000 },
     fileFilter: function (req, file, cb) {
         checkFileType(file, cb);
     }
-}).single('imageFile');
+}).single('Image');
 
-        // check file type
+    // check file type
 
 function checkFileType(file, cb) {
     const filetype = /jpeg|jpg|png/;
@@ -60,14 +57,21 @@ function checkFileType(file, cb) {
 
 }
 
-
 app.get('/butik/seller/upload',function (req, res){
     res.render('butik');
+    
 });
 
 
-    
-app.post('/', (req, res) => {
+
+app.post('/uploads', (req, res) => {
+
+    database2.insert({
+        size: req.body.size,
+        model: req.body.model,
+        price: req.body.price
+    });
+
     upload(req, res, (err) => {
         if (err) {
             console.log(err);
@@ -76,48 +80,36 @@ app.post('/', (req, res) => {
             });
         }
         else {
-            switch (req.body.model) {
-                case AirJ:
-           
-                    fs.readdir('./uploads_Jordan1', (err, data) => {
+
+            if (err)
+                console.log(err);
+            else{
+                fs.readdir('./uploads_Airforce1', (err, data) => {
+                    
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        for (let i = 0; i < data.length;i++) {
+                            database2.insert({
+                                imgLink: i
+                            });
+                        }
                         if (err) {
                             console.log(err);
                         }
                         else {
                             res.render('index', {
                                 imgData: data,
-                                size: req.range(),
-                                price: req.number,
-                                model: req.text,
-                                Req: req.file
                             });
-    
                         }
-                    });
-                    break;
-                    case AirF:
-           
-                        fs.readdir('./uploads_Airforce1', (err, data) => {
-                            if (err) {
-                                console.log(err);
-                            }
-                            else {
-                                res.render('index', {
-                                    imgData: data,
-                                    size: req.range(),
-                                    price: req.number,
-                                    model: req.text,
-                                    Req: req.file
-                                });
-        
-                            }
-                        });
-                        break;
-                default:
-                    res.render('butik');
-                   
+                    }
+                });
             }
         }
     });
 });
+
+ 
+
 app.listen(3000);
