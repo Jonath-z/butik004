@@ -24,11 +24,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/public', express.static(path.join('./uploads_Jordan1')));
 app.use('/public', express.static(path.join('./uploads_Airforce1')));
 
-const URL = "mongodb+srv://jo_z:25112002@jonathan@cluster0.h1rni.mongodb.net/jo_z?retryWrites=true&w=majority";
+const uri = "mongodb+srv://jo_z:2511@cluster0.h1rni.mongodb.net/admin?retryWrites=true&w=majority";
 
 // setup storage engine
 const storage = new GridFsStorage({
-    url: URL,
+    url: uri,
     file: function (req, file) {
         return new Promise((resolve, reject) => {
             crypto.randomBytes(16, (err, buf) => {
@@ -48,13 +48,17 @@ const storage = new GridFsStorage({
     }
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage }).single('Image');
 
-const connect = mongoose.createConnection(URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+const connect = mongoose.createConnection(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+// const MongoClient = require('mongodb').MongoClient;
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// client.connect(err => {
+//     const collection = client.db("test").collection("devices");
+//     // perform actions on the collection object
+//     client.close();
+//   });
 let gfs;
 connect.once('open', () => {
     gfs = new mongoose.mongo.GridFSBucket(connect.db, {
@@ -70,8 +74,15 @@ app.get('/uploads/butik', (req, res) => {
     console.log(req.body);
 });
 
-app.post('/', upload.single("Image"), (req, res) => {
-    res.render('index');
+app.post('/', (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render('index');
+        }
+    });
 });
 
  
