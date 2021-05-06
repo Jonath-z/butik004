@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butik | Pass your command</title>
+</head>
+<body>
+    <header>
+        <h1 id="passYourCommand">Pass your command on Butik</h1>
+        <p class="blackColor">-<span>BLACK COLOR</span> Entertainment-</p>
+    </header>
+    <section class="markContainer">
+        <h4>Our Products</h4>
+        <hr>
+        <p id="airForce">Air Force1</p>
+        <p id="airJordan1">Air Jordan1</p>
+        <p id="jordan6">Jordan 6</p>
+        <p id="jordan4">Jordan 4</p>
+        <p id="timberland">Timberland</p>
+    </section>
+    <section class="commandSection">
+        <div class="commandImage">
+          <div id="imgClient"></div>
+            <div id="details"></div>
+        </div>
+        <div class="commandForm">
+            <form action="/command" method="post" enctype="multipart/form-data">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="clientName">
+                <label for="postName">Post-Name</label>
+                <input type="text" name="postName" id="clientPostName">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="clientEmail"><br>
+                <p>Select your contry</p>
+                <label for="congo">Congo DRC</label>
+                <input type="radio" name="ClientContry" id="clientContry" value="congo">
+                <label for="burundi">Burundi</label>
+                <input type="radio" name="ClientContry" id="clientContry" value="burundi">
+                <label for="rwanda">Rwanda</label>
+                <input type="radio" name="ClientContry" id="clientContry" value="rwanda"><br>
+                <label for="Phone">Phone Number</label>
+                <input type="tel" name="Phone" id="clientPhone">
+                <input type="button" value="Send my Command" id="ClientSubmitButton">
+            </form>
+        </div>
+    </section>
+    <section class="products">
+        <section class="shoesContainer">
+
+        </section>
+    </section>
+
+    <footer class="footer">
+        <div class="copyright_container">
+            <p>&copy;Jonathan Zihindula 2021</p>
+        </div>
+        <div class="contact_container">
+            <h5>Contact us:</h5>
+            <ul>
+                <li><a href="#">Instagram</a></li>
+                <li><a id="faceboock">Facebook</a></li>
+                <li><a href="mailto:blackcolorent@gmail.com">Email</a></li>
+                <li><a href="tel:+2507810980810">WhatsApp</a></li>
+                <li><a id="aboutUs">About us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="/statics/product.js"></script>
+</body>
+</html>

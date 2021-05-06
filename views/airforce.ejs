@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Butik|Jordan 1</title>
+    <title>Butik|airForce</title>
 </head>
 <body>
     <header>
@@ -26,12 +26,13 @@
     </section>
         <section class="shoesContainer">
             <% if (shoes == undefined) { %>
-                <%- `<p class= "Paraundefined">The Shoes witch your are looking for is not available now !` %> 
-                <% } %>
-                
-                    <% shoes.reverse().forEach(i => { %>
-                    <%- `<div class="image"><img src="/public/${i.image}" alt="image"></div><br><div class="detailsImage"><p>model: ${i.model}<br>price: ${i.price}"<br>size: ${i.size}</p></div>` %> 
-                <% }) %>
+            <%- `<p class= "Paraundefined">The Shoes witch your are looking for is not available now !` %> 
+            <% } %>
+            
+                <% shoes.reverse().forEach(i => { %>
+                <%- `<div class="image"><img src="/public/${i.image}" alt="image"></div><br><div class="detailsImage"><p>model: ${i.model}<br>price: ${i.price}"<br>size: ${i.size}</p></div>` %> 
+            <% }) %>
+             
          </section>
     <hr>
     <footer class="footer">
@@ -51,6 +52,5 @@
     </footer>
 
         <script src="/statics/product.js"></script>
-
 </body>
 </html>

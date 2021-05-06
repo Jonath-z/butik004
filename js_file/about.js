@@ -2,8 +2,8 @@
 // diaporama 
 var img = [];
 
-img[0] = './image/backgroundImg3.jpeg';
-img[1] = './image/backgroundImg4.jpeg';
+img[0] = '/publics/backgroundImg3.jpeg';
+img[1] = '/publics/backgroundImg4.jpeg';
 
 var imageContainer = document.getElementsByTagName('img');
 var i = 0;

@@ -16,14 +16,8 @@
         <hr>
         <p id="airForce">Air Force1</p>
         <p id="airJordan1">Air Jordan1</p>
-        <p id="airNike">Air Nike</p>
-        <p id="puma">Puma</p>
-        <p id="boost">Boost</p>
-        <p id="jordan6">Jordan6</p>
-        <p id="jordan4">Jordan4</p>
-        <p id="jordan3">Jordan3</p>
-        <p id="jordan11">Jordan11</p>
-        <p id="jordan13">Jordan13</p>
+        <p id="jordan6">Jordan 6</p>
+        <p id="jordan4">Jordan 4</p>
         <p id="timberland">Timberland</p>
     </section>
     <section class="products">
@@ -31,9 +25,13 @@
          </section>
     </section>
         <section class="shoesContainer">
-         <% for( let i = 0; i < imgData.length; i++ ) { %>
-           <%- `<div class="shoes"><img src="/public/${imgData[i]}" alt="Image"><br><p class="shoesInformation"></p><hr></div>` %> 
-         <% } %>
+            <% if (shoes == []) { %>
+                <%- `<p class= "Paraundefined">The Shoes witch your are looking for is not available now !` %> 
+                <% } %>
+                
+                    <% shoes.reverse().forEach(i => { %>
+                    <%- `<div class="image"><img src="/public/${i.image}" alt="image"></div><br><div class="detailsImage"><p>model: ${i.model}<br>price: ${i.price}"<br>size: ${i.size}</p></div>` %> 
+                <% }) %>
          </section>
     <hr>
     <footer class="footer">
@@ -47,11 +45,12 @@
                 <li><a id="faceboock">Facebook</a></li>
                 <li><a href="mailto:blackcolorent@gmail.com">Email</a></li>
                 <li><a href="tel:+2507810980810">WhatsApp</a></li>
-                <li><a href="about.html">About us</a></li>
+                <li><a id="aboutUs">About us</a></li>
             </ul>
         </div>
     </footer>
 
-    <!-- <script src="/statics/product.js"></script> -->
+    <script src="/statics/product.js"></script>
+
 </body>
 </html>
