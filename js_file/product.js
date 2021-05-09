@@ -41,11 +41,12 @@ aboutUs.addEventListener("click", () => {
 });
 
 
-const imgClient = document.getElementById("imgshoes");
 const command = document.querySelectorAll("img");
 command.forEach(i => {
     i.addEventListener("click", () => {
         window.open("http://localhost:3000/butik/command", "self");
+
+        const imgClient = document.getElementById("imgshoes");
         console.log(i.src);
         imgClient.src = i.src;
     });
