@@ -1,12 +1,8 @@
 // command events
-const imgClient = document.getElementById("details");
-const cmd = document.querySelectorAll("img");
+// const imgClient = document.getElementById("imgshoes");
+// console.log(imgClient);
+// const commandshoes = document.querySelectorAll("img");
+// commandshoes.forEach(i => {
+//     console.log(i.src);
+// });
 
-cmd.forEach(i => {
-    const img = document.createElement("img");
-    const src = i.src;
-    img.alt = "image";
-    img.src = src;
-    imgClient.appendChild(img);
-    console.log(img);
-});

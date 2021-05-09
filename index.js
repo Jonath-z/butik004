@@ -122,7 +122,8 @@ app.get('/butik/about', (req, res) => {
 });
 // get command page
 app.get("/butik/command", (req, res) => {
-    res.render("command");
+
+        res.render("command")
 });
 
 
