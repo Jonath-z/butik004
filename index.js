@@ -122,12 +122,15 @@ app.get('/butik/about', (req, res) => {
 });
 // get command page
 app.get("/butik/command", (req, res) => {
-
-        res.render("command")
+    res.render("command");
 });
 
-
-
+app.get("/butik/command/render", (req, res) => {
+    db.collection("details").find({}).toArray((err, data) => {
+        res.send(data);
+        res.end();
+    });
+});
 
 // post request butik
 app.post('/uploads/butik', upload, (req, res) => {
@@ -148,6 +151,7 @@ app.post('/uploads/butik', upload, (req, res) => {
         }
     });
     res.redirect('/uploads/butik');
+    console.log(req.body);
 
 });
 

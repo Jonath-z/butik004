@@ -1,5 +1,6 @@
 
 
+
 // airforce 1 events
 const airfore = document.querySelector("#airForce");
 airfore.addEventListener("click", () => {
@@ -40,25 +41,22 @@ aboutUs.addEventListener("click", () => {
     window.open("http://localhost:3000/butik/about","_self");
 });
 
+// command page 
+const command = document.querySelectorAll("#commandShoes");
+const form = document.querySelector(".form");
 
-const command = document.querySelectorAll("img");
+
 command.forEach(i => {
     i.addEventListener("click", () => {
-        window.open("http://localhost:3000/butik/command", "self");
+    
+        window.open("http://localhost:3000/butik/command", "_blank");
 
-        const imgClient = document.getElementById("imgshoes");
-        console.log(i.src);
-        imgClient.src = i.src;
+        fetch("http://localhost:3000/butik/command/render", {
+            
+        })
+            .then(res => { return res.json() })
+            .then(data => {
+                console.log(data);
+            });
     });
 });
-
-
-
-
-
-
-
-
- 
-
-
