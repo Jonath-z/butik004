@@ -1,6 +1,4 @@
 
-
-
 // airforce 1 events
 const airfore = document.querySelector("#airForce");
 airfore.addEventListener("click", () => {
@@ -48,13 +46,20 @@ const form = document.querySelector(".form");
 
 command.forEach(i => {
     i.addEventListener("click", () => {
-    
-        window.open("http://localhost:3000/butik/command", "_blank");
-
-        fetch("http://localhost:3000/butik/command/render", {
-            
+        window.open("http://localhost:3000/butik/command");
+        const uri = "http://localhost:3000/butik/command/render";
+        const data = {
+            'imglink' : `${i.src}`
+        }
+        fetch(uri, {
+            method: "POST",
+            headers: {
+                'Accept': '*/*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ data })
         })
-            .then(res => { return res.json() })
+                    .then(res => { return res.json() })
             .then(data => {
                 console.log(data);
             });

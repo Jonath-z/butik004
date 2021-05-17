@@ -29,6 +29,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use('/statics', express.static(path.join(__dirname, './js_file')));
 app.use('/publics', express.static(path.join(__dirname, './image')));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/public', express.static(path.join('./uploads')));
 app.use('/static', express.static(path.join('./css_Style')));
@@ -42,10 +43,9 @@ const db = mongoose.connection;
 const storage = multer.diskStorage({
     destination: './uploads/',
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
-
 
 const upload = multer({
     storage: storage
@@ -125,11 +125,12 @@ app.get("/butik/command", (req, res) => {
     res.render("command");
 });
 
-app.get("/butik/command/render", (req, res) => {
-    db.collection("details").find({}).toArray((err, data) => {
-        res.send(data);
-        res.end();
-    });
+// post request from client
+app.post("/butik/command/render", (req, res) => {
+    db.collection("details").find({image : "Image-1619971059939.jpg"}).toArray((err, data) => {
+    res.send(data);
+    res.end();
+    })
 });
 
 // post request butik
@@ -151,8 +152,6 @@ app.post('/uploads/butik', upload, (req, res) => {
         }
     });
     res.redirect('/uploads/butik');
-    console.log(req.body);
-
 });
 
 // post request for client command
