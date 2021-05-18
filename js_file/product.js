@@ -49,7 +49,7 @@ command.forEach(i => {
         window.open("http://localhost:3000/butik/command");
         const uri = "http://localhost:3000/butik/command/render";
         const data = {
-            'imglink' : `${i.src}`
+            'imglink' : `${i.getAttribute("src")}`
         }
         fetch(uri, {
             method: "POST",
@@ -59,9 +59,9 @@ command.forEach(i => {
             },
             body: JSON.stringify({ data })
         })
-                    .then(res => { return res.json() })
+            .then(res => { return res.json() })
             .then(data => {
                 console.log(data);
-            });
-    });
+            })
+  })
 });
