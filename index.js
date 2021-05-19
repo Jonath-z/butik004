@@ -23,9 +23,12 @@ const { POINT_CONVERSION_COMPRESSED } = require('constants');
 const Op = Sequelize.Op;
 const Events = new eventEmitter();
 const app = express();
+const favicon = require('serve-favicon');
+
 
 
 // middleware
+app.use(favicon(path.join(__dirname, './public', 'favicon.ico'))); 
 app.set('view engine', 'ejs');
 app.use('/statics', express.static(path.join(__dirname, './js_file')));
 app.use('/publics', express.static(path.join(__dirname, './image')));
@@ -120,27 +123,21 @@ app.get('/butik/timberland', (req, res) => {
 app.get('/butik/about', (req, res) => {
         res.render("about")      
 });
-// get command page
-app.get("/butik/command", (req, res) => {
-    res.render("command");
-});
 
 // post request from client
 app.post("/butik/command/render", (req, res) => {
     var request = `${req.body.data.imglink}`;
-    
     if (request.indexOf("/public/") >= 0) {
         const index = request.replace("/public/", "")
         db.collection("details").find({ "image": index }).toArray((err, data) => {
-            res.send(data);
+            // rendering command page **bug notified in the broswer**
+            res.render('command', {
+                shoes: data[0]
+            });
             res.end();
         });
     }
 });
-
-  
-
-
 
 // post request butik
 app.post('/uploads/butik', upload, (req, res) => {
@@ -173,4 +170,4 @@ app.post('/command', (req, res) => {
 
 
 
-app.listen(3000);
+app.listen(6578);
