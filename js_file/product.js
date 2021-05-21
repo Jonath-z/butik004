@@ -44,28 +44,30 @@ const command = document.querySelectorAll("#commandShoes");
 const form = document.querySelector(".form");
 const imgshoes = document.getElementById("Shoes");
 
+const uri = "http://localhost:6578/butik/command/render";
 
-command.forEach(i => {
-    i.addEventListener("click", () => {
-        const uri = "http://localhost:6578/butik/command/render";
-        const data = {
-            'imglink': `${i.getAttribute("src")}`
-        }
-        fetch(uri, {
-            method: "POST",
-            headers: {
-                'Accept': '*/*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ data })
-        })
-            .then(res => {
-                return res.text()
+function eventsFunction() {
+    command.forEach(i => {
+        i.addEventListener("click", () => {
+            window.open("http://localhost:6578/butik/command")
+            const data = {
+                'imglink': `${i.getAttribute("src")}`
+            }
+            fetch(uri, {
+                method: "POST",
+                headers: {
+                    'Accept': '*/*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data })
             })
-            .then(data => {
-                console.log(data);
-            });
-            window.open("http://localhost:6578/butik/command/render");
+                .then(res => {
+                    return res.json();
+                })
+                .then(data => {
+                    console.log(data);
+                });
+        });
     });
-});
-
+}
+eventsFunction();
