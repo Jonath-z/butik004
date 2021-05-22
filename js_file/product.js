@@ -66,7 +66,7 @@ function eventsFunction() {
                 })
                 .then(data => {
                     const Window = window.open("http://localhost:6578/butik/command", "_self").document.write(`
-                    <!DOCTYPE html>
+                   "<!DOCTYPE html>
                     <html lang="en">
                     <head>
                     <meta charset="UTF-8">
@@ -89,7 +89,7 @@ function eventsFunction() {
                     </div>
                     </div>
                     <div class="commandForm">
-                    <form action="/command" method="post" enctype="multipart/form-data">
+                    <form action="/command" method="POST">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="clientName">
                         <label for="postName">Post-Name</label>
@@ -124,16 +124,11 @@ function eventsFunction() {
                     </div>
                     </footer>
                     </body>
-                    </html>`);
-                    document.close();
+                    </html>"`);
+                  document.close();
                     console.log(data);
                 });
         });
     });
 }
 eventsFunction();
-const button = document.getElementsByTagName("button");
-button[0].addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("command sent succesfully !!");
-});
