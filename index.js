@@ -27,7 +27,7 @@ const favicon = require('serve-favicon');
 const fetch = require('node-fetch');
 const { json } = require('body-parser');
 const { request } = require('express');
-
+const { body, validationResult } = require('express-validator');
 // middleware
 app.use(favicon(path.join(__dirname, './public', 'favicon.ico')));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -132,7 +132,6 @@ app.post("/butik/command/render", (req, res) => {
     if (request.indexOf("/public/") >= 0) {
         const index = request.replace("/public/", "")
         db.collection("details").find({ "image": index }).toArray((err, data) => {
-            // rendering command page **bug notified in the broswer**
             res.send(data);
             res.end();
         });
@@ -145,9 +144,19 @@ app.get("/butik/command", (req, res) => {
 });
 
 // post request for client command
-app.post('/command',bodyParser.urlencoded({ extended: false }), (req, res) => {
-    res.redirect('/')
-    console.log(req.body);
+app.post('/command',
+    body('email').isEmail().normalizeEmail(),
+    body('Phone').isLength({ min: 10 }).isNumeric(),
+    body('name').isLength({ min: 2 }),
+    body('postName').isLength({ min: 2 }),
+    body('ClientContry').notEmpty()
+    , (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+             res.send("command unsent because of error in command formular");
+        }
+        res.redirect('/')
+        console.log(req.body);
 });
 
 // post request butik
