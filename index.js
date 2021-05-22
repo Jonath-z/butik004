@@ -29,12 +29,12 @@ const { json } = require('body-parser');
 const { request } = require('express');
 
 // middleware
-app.use(favicon(path.join(__dirname, './public', 'favicon.ico'))); 
+app.use(favicon(path.join(__dirname, './public', 'favicon.ico')));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 app.use('/statics', express.static(path.join(__dirname, './js_file')));
 app.use('/publics', express.static(path.join(__dirname, './image')));
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/public', express.static(path.join('./uploads')));
 app.use('/static', express.static(path.join('./css_Style')));
 
@@ -137,12 +137,17 @@ app.post("/butik/command/render", (req, res) => {
             res.end();
         });
     }
-    console.log(request01);
 });
 
 //get command 
 app.get("/butik/command", (req, res) => {
     res.render("command");
+});
+
+// post request for client command
+app.post('/command',bodyParser.urlencoded({ extended: false }), (req, res) => {
+    res.redirect('/')
+    console.log(req.body);
 });
 
 // post request butik
@@ -165,15 +170,6 @@ app.post('/uploads/butik', upload, (req, res) => {
     });
     res.redirect('/uploads/butik');
 });
-
-// post request for client command
-app.post('/command', (req, res) => {
-    res.redirect('/command');
-});
-
-
-
-
 
 
 app.listen(6578);
