@@ -22,12 +22,25 @@ const { where } = require('sequelize');
 const { POINT_CONVERSION_COMPRESSED } = require('constants');
 const Op = Sequelize.Op;
 const Events = new eventEmitter();
-const app = express();
 const favicon = require('serve-favicon');
 const fetch = require('node-fetch');
 const { json } = require('body-parser');
 const { request } = require('express');
 const { body, validationResult } = require('express-validator');
+const Nexmo = require('nexmo');
+const nodemailer = require('nodemailer');
+const googleAuth = require('google-auth-library');
+
+
+// nexmo init 
+const nexmo = new Nexmo({
+    apiKey: 'f27cdd0a',
+    apiSecret: 'jQh8e1rZBFfVDnSG'
+}, { debug: true });
+
+// express init 
+const app = express();
+
 // middleware
 app.use(favicon(path.join(__dirname, './public', 'favicon.ico')));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -56,11 +69,17 @@ const upload = multer({
 }).single('Image');
 
 
-// get request
+// get request upload butik page
 app.get('/uploads/butik', (req, res) => {
-    res.render('butik');
+    db.collection('commandUser').find({}).toArray((err, data) => {
+        res.render("butik", {
+            command: data,
+            number: data.length 
+        });
+    });
 });
 
+// get main page
 app.get('/', (req, res) => {
     db.collection("details").find({}).toArray((err, data) => {
         if (err) {
@@ -127,7 +146,6 @@ app.get('/butik/about', (req, res) => {
 
  // post request from client
 app.post("/butik/command/render", (req, res) => {
-    const request01 = req.body;
     const request = `${req.body.data.imglink}`;
     if (request.indexOf("/public/") >= 0) {
         const index = request.replace("/public/", "")
@@ -140,7 +158,7 @@ app.post("/butik/command/render", (req, res) => {
 
 //get command 
 app.get("/butik/command", (req, res) => {
-    res.render("command");
+        res.render("command")
 });
 
 // post request for client command
@@ -153,11 +171,73 @@ app.post('/command',
     , (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-             res.send("command unsent because of error in command formular");
+            res.send("command unsent because of error in command formular");
         }
-        res.redirect('/')
+
+        // message sendind system
+        const number = req.body.Phone;
+        const text = `Dear ${req.body.name} ${req.body.postName}: command is sent`;
+        nexmo.message.sendSms(
+            "Vonage APIs", number, text, { type: 'unicode' },
+            (err, responseData) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.dir(responseData);
+                }
+            }
+        );
+        // mail sending system
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            service: 'Gmail',
+            auth: {
+                user: "jonathanzihindula95@gmail.com",
+                pass: "25112002"
+            },
+            tls: {
+                rejectUnauthorized: false
+            }
+        });
+            
+        // send mail with defined transport object
+        let info = transporter.sendMail({
+            from: '"Butik" <jonathanzihindula95@gmail.com>', // sender address
+            to: `"${req.body.email}"`, // list of receivers
+            subject: "Command's confirmation", // Subject line
+            text: `Dear ${req.body.name} ${req.body.postName} from ${req.body.ClientContry} your command is received.
+                       Please send money to +243993556302 ,specifying the name and postname enter to command.
+                       Thanks for trusting us BUTIK 004`, // plain text body
+            // html: "<p>Thanks for trusting us <span>BUTIK 004</span></p>", // html body
+        });
+            
+        // console.log("Message sent: %s", info.messageId);
+        // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
         console.log(req.body);
-});
+
+        let today = new Date();
+        // let timestamp = today.valueOf();
+        const user = {
+            link: req.body.link,
+        }
+        const linkUpdate = {
+            Name: req.body.name,
+            PostName: req.body.postName,
+            Phone: req.body.Phone,
+            Contry: req.body.ClientContry,
+            Email: req.body.email,
+            Date: today
+      }
+        const link = db.collection('commandUser').insertOne(linkUpdate);;
+        
+        // console.log(today);
+        // console.log(user);
+        res.redirect('/');
+    });
 
 // post request butik
 app.post('/uploads/butik', upload, (req, res) => {
@@ -181,4 +261,4 @@ app.post('/uploads/butik', upload, (req, res) => {
 });
 
 
-app.listen(6578);
+const server = app.listen(6578);

@@ -91,20 +91,20 @@ function eventsFunction() {
                     <div class="commandForm">
                     <form action="/command" method="POST">
                         <label for="name">Name</label>
-                        <input type="text" name="name" id="clientName">
+                        <input type="text" name="name" id="clientName" placeholder="name: 2 characters minimum" required>
                         <label for="postName">Post-Name</label>
-                        <input type="text" name="postName" id="clientPostName">
+                        <input type="text" name="postName" id="clientPostName" placeholder="postname: 2 characters minimum" required>
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="clientEmail"><br>
+                        <input type="email" name="email" id="clientEmail" placeholder="Email adress" required><br>
                         <p>contry</p>
                         <label for="congo">Congo DRC</label>
-                        <input type="radio" name="ClientContry" id="clientContry" value="congo">
+                        <input type="radio" name="ClientContry" id="clientContry" value="Congo DRC">
                         <label for="burundi">Burundi</label>
-                        <input type="radio" name="ClientContry" id="clientContry" value="burundi">
+                        <input type="radio" name="ClientContry" id="clientContry" value="Burundi">
                         <label for="rwanda">Rwanda</label>
-                        <input type="radio" name="ClientContry" id="clientContry" value="rwanda"><br>
+                        <input type="radio" name="ClientContry" id="clientContry" value="Rwanda"><br>
                         <label for="Phone">Phone Number</label>
-                        <input type="tel" name="Phone" id="clientPhone">
+                        <input type="tel" name="Phone" id="clientPhone" placeholder="+2439935647365" required>
                         <button type="submit" id="ClientSubmitButton">Send my Command</button>
                         </form> 
                     </div>
@@ -123,6 +123,7 @@ function eventsFunction() {
                     </ul>
                     </div>
                     </footer>
+                    <script src="/statics/command.js"></script>
                     </body>
                     </html>"`);
                   document.close();
