@@ -9,7 +9,7 @@
 <body>
     <section class="butikForm"></section>
     <form action="/uploads/butik" method="post" enctype="multipart/form-data">
-    <div class="uplodadingFile">
+    <div class="uploadingFile">
         <label>Image</label>
         <input type="file" name="Image" id="File">
     </div>
@@ -34,18 +34,9 @@
     <p class="commandNumber">
         command until here : <%- number %> commands 
     </p>
-    <table>
-        <tr><th>Name</th>
-            <th>PostName</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Contry</th>
-            <th>Date</th>
-        </tr>
     <% command.reverse().forEach(command => {%>
-    <%-`<tr><th>${command.Name}</th><th>${command.PostName}</th><th>${command.Phone}</th><th>${command.Email}</th><th>${command.Contry}</th><th>${command.Date}</th></tr>`%>
-    <% })%>
-    </table>
+       <%- `<div class="userDetails"><pclass="user">Name: ${command.Name}</p><p class="user">PostName: ${command.PostName} </p><p class="user">Phone: ${command.Phone}</p><p class="user">Email:${command.Email} </p><p class="user">Contry: ${command.Contry}</p></div><div class="userShoes"><img src="/public/${command.Command}" alt="image" class="user"></div><hr>` %>
+        <% })%> 
 </secton>
 </body>
 </html>

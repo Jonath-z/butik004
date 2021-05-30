@@ -1,20 +1,12 @@
 
 const imgCommanded = document.getElementById("Shoes");
-const src = imgCommanded.src;
-const button = document.getElementById("ClientSubmitButton")
-
-    const link = {
-        src: src
-    }
-    const url = "http://localhost:6578/command"
-    fetch(url, {
-        method: "POST",
-        headers: {
-            'Accept': '*/*',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ link })
-    })
-        .then(res => { return res.json() });
+var fileCommanded = document.getElementById("fileCommanded");
+const src = imgCommanded.getAttribute("src")
+if (src.indexOf("/public/") >= 0) {
+    const file = src.replace("/public/", "");
     console.log(src);
+    console.log(fileCommanded);
+    fileCommanded.value = `${file}`; 
+}
+
 

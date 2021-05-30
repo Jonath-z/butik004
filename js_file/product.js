@@ -44,8 +44,8 @@ const command = document.querySelectorAll("#commandShoes");
 const form = document.querySelector(".form");
 const imgshoes = document.getElementById("Shoes");
 
-const uri = "http://localhost:6578/butik/command/render";
-
+const uri1 = "http://localhost:6578/butik/command/render";
+const uri2 = "http://localhost:6578/command";
 function eventsFunction() {
     command.forEach(i => {
         i.addEventListener("click", () => {
@@ -53,7 +53,7 @@ function eventsFunction() {
             const data = {
                 'imglink': `${i.getAttribute("src")}`
             }
-            fetch(uri, {
+            fetch(uri1, {
                 method: "POST",
                 headers: {
                     'Accept': '*/*',
@@ -66,7 +66,7 @@ function eventsFunction() {
                 })
                 .then(data => {
                     const Window = window.open("http://localhost:6578/butik/command", "_self").document.write(`
-                   "<!DOCTYPE html>
+                   <!DOCTYPE html>
                     <html lang="en">
                     <head>
                     <meta charset="UTF-8">
@@ -96,6 +96,8 @@ function eventsFunction() {
                         <input type="text" name="postName" id="clientPostName" placeholder="postname: 2 characters minimum" required>
                         <label for="email">Email</label>
                         <input type="email" name="email" id="clientEmail" placeholder="Email adress" required><br>
+                        <label for="file">command checked</label>
+                        <input type="text" name="file" id="fileCommanded" readonly>
                         <p>contry</p>
                         <label for="congo">Congo DRC</label>
                         <input type="radio" name="ClientContry" id="clientContry" value="Congo DRC">
@@ -108,28 +110,18 @@ function eventsFunction() {
                         <button type="submit" id="ClientSubmitButton">Send my Command</button>
                         </form> 
                     </div>
-                    <footer class="footer">
-                    <div class="copyright_container">
-                    <p>&copy;Jonathan Zihindula 2021</p>
-                    </div>
-                    <div class="contact_container">
-                    <h5>Contact us:</h5>
-                    <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a id="faceboock">Facebook</a></li>
-                    <li><a href="mailto:blackcolorent@gmail.com">Email</a></li>
-                    <li><a href="tel:+2507810980810">WhatsApp</a></li>
-                    <li><a id="aboutUs">About us</a></li>
-                    </ul>
-                    </div>
-                    </footer>
                     <script src="/statics/command.js"></script>
                     </body>
-                    </html>"`);
-                  document.close();
-                    console.log(data);
+                    </html>`);
+                    document.close();
+                    // console.log(data);
                 });
         });
     });
 }
 eventsFunction();
+
+const specialCommand = document.getElementById("customerOpen");
+specialCommand.addEventListener("click", () => {
+    window.open("http://localhost:6578/special/command","_self");
+});

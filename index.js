@@ -13,7 +13,7 @@ const eventEmitter = require('events');
 const { url } = require('inspector');
 const { config, nextTick } = require('process');
 const { resolve } = require('path');
-const { reject, result, isArguments } = require('lodash');
+const { reject, result, isArguments, conforms } = require('lodash');
 const { stringify } = require('querystring');
 const { MongoClient } = require('mongodb');
 const { MulterError } = require('multer');
@@ -49,6 +49,7 @@ app.use('/statics', express.static(path.join(__dirname, './js_file')));
 app.use('/publics', express.static(path.join(__dirname, './image')));
 app.use(express.json());
 app.use('/public', express.static(path.join('./uploads')));
+app.use('/customers', express.static(path.join('./uploads2')));
 app.use('/static', express.static(path.join('./css_Style')));
 
 const uri = "mongodb+srv://joz:2511@butik.qrb2j.mongodb.net/butik?retryWrites=true&w=majority";
@@ -63,25 +64,33 @@ const storage = multer.diskStorage({
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
-
 const upload = multer({
     storage: storage
 }).single('Image');
 
+const storage2 = multer.diskStorage({
+    destination: './uploads2/',
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+const upload2 = multer({
+    storage: storage2
+}).single('Image');
 
 // get request upload butik page
 app.get('/uploads/butik', (req, res) => {
     db.collection('commandUser').find({}).toArray((err, data) => {
         res.render("butik", {
             command: data,
-            number: data.length 
+            number: data.length,
         });
     });
 });
 
 // get main page
 app.get('/', (req, res) => {
-    db.collection("details").find({}).toArray((err, data) => {
+    db.collection("details").find().toArray((err, data) => {
         if (err) {
             console.log("connection problem")
         }
@@ -95,17 +104,17 @@ app.get('/', (req, res) => {
 });
 // get airforce page 
 app.get('/butik/airforce', (req, res) => {
-    db.collection("details").find({ "model": "Air force 1" }).toArray((err, data) => {
+    db.collection("details").find({ "model": /^Air force 1/ }).toArray((err, data) => {
         res.render("airforce", {
             shoes: data
         });
-    })
+    });
 
 });
 
 // get jordan1 page
 app.get('/butik/jordan1', (req, res) => {
-    db.collection("details").find({ "model": "Jordan 1" }).toArray((err, data) => {
+    db.collection("details").find({ "model": /^Jordan 1/ }).toArray((err, data) => {
         res.render("jordan1", {
             shoes: data
         });
@@ -114,7 +123,7 @@ app.get('/butik/jordan1', (req, res) => {
 
 // get jordan4 page
 app.get('/butik/jordan4', (req, res) => {
-    db.collection("details").find({ "model": "Jordan 4" }).toArray((err, data) => {
+    db.collection("details").find({ "model": /^Jordan 4/ }).toArray((err, data) => {
         res.render("jordan4", {
             shoes: data
         });
@@ -123,7 +132,7 @@ app.get('/butik/jordan4', (req, res) => {
 
 // get jordan6 page
 app.get('/butik/jordan6', (req, res) => {
-    db.collection("details").find({ "model": "Jordan 6" }).toArray((err, data) => {
+    db.collection("details").find({ "model": /^Jordan 6/ }).toArray((err, data) => {
         res.render("jordan6", {
             shoes: data
         });
@@ -132,7 +141,7 @@ app.get('/butik/jordan6', (req, res) => {
 
 // get timberland page
 app.get('/butik/timberland', (req, res) => {
-    db.collection("details").find({ "model": "Timberland" }).toArray((err, data) => {
+    db.collection("details").find({ "model": /^Timberland/ }).toArray((err, data) => {
         res.render("timberland", {
             shoes: data
         });
@@ -144,17 +153,6 @@ app.get('/butik/about', (req, res) => {
     res.render("about")      
 });
 
- // post request from client
-app.post("/butik/command/render", (req, res) => {
-    const request = `${req.body.data.imglink}`;
-    if (request.indexOf("/public/") >= 0) {
-        const index = request.replace("/public/", "")
-        db.collection("details").find({ "image": index }).toArray((err, data) => {
-            res.send(data);
-            res.end();
-        });
-    }
-});
 
 //get command 
 app.get("/butik/command", (req, res) => {
@@ -162,13 +160,14 @@ app.get("/butik/command", (req, res) => {
 });
 
 // post request for client command
-app.post('/command',
+const commande = app.post('/command',
     body('email').isEmail().normalizeEmail(),
     body('Phone').isLength({ min: 10 }).isNumeric(),
     body('name').isLength({ min: 2 }),
     body('postName').isLength({ min: 2 }),
-    body('ClientContry').notEmpty()
-    , (req, res) => {
+    body('ClientContry').notEmpty(),
+    upload, (req, res) => {
+        // console.log(req.body);
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             res.send("command unsent because of error in command formular");
@@ -184,7 +183,7 @@ app.post('/command',
                     console.log(err);
                 }
                 else {
-                    console.dir(responseData);
+                    // console.dir(responseData);
                 }
             }
         );
@@ -208,36 +207,116 @@ app.post('/command',
             from: '"Butik" <jonathanzihindula95@gmail.com>', // sender address
             to: `"${req.body.email}"`, // list of receivers
             subject: "Command's confirmation", // Subject line
-            text: `Dear ${req.body.name} ${req.body.postName} from ${req.body.ClientContry} your command is received.
-                       Please send money to +243993556302 ,specifying the name and postname enter to command.
-                       Thanks for trusting us BUTIK 004`, // plain text body
-            // html: "<p>Thanks for trusting us <span>BUTIK 004</span></p>", // html body
+            html: `"<p>Dear ${req.body.name} ${req.body.postName};<br>
+            from ${req.body.ClientContry};<br>
+            your command is received.
+            Please send money to +243977473567 if your are in DRC,<br>
+            to +250781980810 if your are in Rwanda <b>to confirm your command</b>,specifying the name and postname enter to command.<br>
+             <b>Thanks for trusting us, BUTIK 004</b></p>"`, // html body
         });
             
         // console.log("Message sent: %s", info.messageId);
         // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
-        console.log(req.body);
-
         let today = new Date();
-        // let timestamp = today.valueOf();
         const user = {
-            link: req.body.link,
-        }
-        const linkUpdate = {
             Name: req.body.name,
             PostName: req.body.postName,
             Phone: req.body.Phone,
             Contry: req.body.ClientContry,
             Email: req.body.email,
+            Command: req.body.file,
             Date: today
-      }
-        const link = db.collection('commandUser').insertOne(linkUpdate);;
-        
+        }
+        const link = db.collection('commandUser').insertOne(user);
         // console.log(today);
         // console.log(user);
         res.redirect('/');
     });
+    
+  // post request from client
+app.post("/butik/command/render", (req, res) => {
+    const request = `${req.body.data.imglink}`;
+    if (request.indexOf("/public/") >= 0) {
+        const index = request.replace("/public/", "")
+        db.collection("details").find({ "image": index }).toArray((err, data) => {
+            res.send(data);
+            res.end();
+        });
+    }
+});
+
+// get customer page 
+app.get("/special/command", (req, res) => {
+    res.render("SpecialCommand");
+});
+
+// post customer Command
+app.post("/customers/command", upload2, (req, res) => {
+    fs.readdir('./uploads2', (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            let today = new Date();
+            const img = data[data.length - 1];
+            const obje = {
+                image: img,
+                Name: req.body.name,
+                PostName: req.body.postName,
+                Phone: req.body.Phone,
+                Contry: req.body.ClientContry,
+                Email: req.body.email,
+                Comment: req.body.customersDetails,
+                Date: today
+            };
+            console.log(obje);
+            db.collection('customersCommand').insertOne(obje);
+            // send Email on butik
+
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 587,
+                secure: false,
+                service: 'Gmail',
+                auth: {
+                    user: "jonathanzihindula95@gmail.com",
+                    pass: "25112002"
+                },
+                tls: {
+                    rejectUnauthorized: false
+                }
+            });
+            
+            // send mail with defined transport object
+            let info = transporter.sendMail({
+                from: '"Butik Web" <jonathanzihindula95@gmail.com>', // sender address
+                to: "jonathanzihindula@gmail.com", // list of receivers
+                subject: "Special Command", // Subject line
+                // text:
+                html: `"<h1>command from <span>BUTIK 004</span></h1><br>
+                        <p>Name: ${obje.Name} ${obje.PostName}<br>
+                        Phone: ${obje.Phone}<br>
+                        Contry: ${obje.Contry}<br>
+                        Email: ${obje.Email}<br>
+                        Command details: ${obje.Comment}</p>
+                        <p><b>${obje.Date}</b></p>"`, // html body
+                attachments: [{
+                    filename: `${obje.image}`,
+                    path: `http://localhost:6578/customers/${obje.image}`
+                }]
+            });
+            
+            // console.log("Message sent: %s", info.messageId);
+            // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+        }
+    });
+    
+
+    res.redirect("/");
+});
+
 
 // post request butik
 app.post('/uploads/butik', upload, (req, res) => {
@@ -262,3 +341,5 @@ app.post('/uploads/butik', upload, (req, res) => {
 
 
 const server = app.listen(6578);
+
+

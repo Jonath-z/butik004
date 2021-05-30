@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers command</title>
+</head>
+<body>
+    <form action="/customers/command" method="post" enctype="multipart/form-data">
+    <label for="Image">Import your image</label>
+    <input type="file" name="Image" id="customersCommand">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="clientName" placeholder="name: 2 characters minimum" required>
+    <label for="postName">Post-Name</label>
+    <input type="text" name="postName" id="clientPostName" placeholder="postname: 2 characters minimum" required>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="clientEmail" placeholder="Email adress" required><br>
+    <label for="congo">Congo DRC</label>
+    <input type="radio" name="ClientContry" id="clientContry" value="Congo DRC">
+    <label for="burundi">Burundi</label>
+    <input type="radio" name="ClientContry" id="clientContry" value="Burundi">
+    <label for="rwanda">Rwanda</label>
+    <input type="radio" name="ClientContry" id="clientContry" value="Rwanda"><br>
+    <label for="Phone">Phone Number</label>
+    <input type="tel" name="Phone" id="clientPhone" placeholder="+2439935647365" required>
+    <label for="customersDetails"></label>
+    <textarea name="customersDetails" id="customersDetails" required></textarea>
+    <button type="submit" id="customerButton">Send my Command</button>
+    </form> 
+    <footer class="footer">
+        <div class="copyright_container">
+            <p>&copy;Jonathan Zihindula 2021</p>
+        </div>
+        <div class="contact_container">
+            <h5>Contact us:</h5>
+            <ul>
+                <li><a href="#">Instagram</a></li>
+                <li><a id="faceboock">Facebook</a></li>
+                <li><a href="mailto:blackcolorent@gmail.com">Email</a></li>
+                <li><a href="tel:+2507810980810">WhatsApp</a></li>
+                <li><a id="aboutUs">About us</a></li>
+            </ul>
+        </div>
+    </footer>  
+</body>
+</html>

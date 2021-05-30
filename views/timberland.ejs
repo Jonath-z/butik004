@@ -19,6 +19,9 @@
         <p id="jordan6">Jordan 6</p>
         <p id="jordan4">Jordan 4</p>
         <p id="timberland">Timberland</p>
+        <div class="customerCommand">
+            <button type="submit" id="customerOpen">Special Command here</button>
+        </div>
     </section>
     <section class="products">
          <section class="shoesContainer">
@@ -30,7 +33,7 @@
                 <% } %>
                 
                     <% shoes.reverse().forEach(i => { %>
-                    <%- `<div class="image"><img src="/public/${i.image}" id="commandShoes" alt="image"></div><br><div class="detailsImage"><p>model: ${i.model}<br>price: ${i.price}"<br>size: ${i.size}</p></div>` %> 
+                    <%- `<div class="image"><img src="/public/${i.image}" id="commandShoes" alt="image"></div><br><div class="detailsImage"><p>model: ${i.model}<br>price: $${i.price}<br>size: ${i.size}</p></div>` %> 
                 <% }) %>
          </section>
     <hr>
