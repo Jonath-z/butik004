@@ -10,11 +10,11 @@
 </head>
 <body>
     <header>
-        <h1>Butik</h1>
-        <p class="blackColor"><span>BLACK COLOR</span> -Entertainment-</p>
+        <h1><b>Butik</b></h1>
+        <p class="blackColor"><span>-BLACK COLOR</span>Entertainment-</p>
     </header>
 <section class="principal">
-    <div class="markContainer">
+    <section class="markContainer">
         <div class="markDiv">
         <h4>Our Products</h4>
         <hr>
@@ -27,7 +27,7 @@
         <div class="customerCommand">
             <button type="submit" id="customerOpen">Special Command here</button>
         </div>
-    </div>
+    </section>
     <section class="products">            
         
              <% img.reverse().forEach(i => { %>
@@ -36,8 +36,6 @@
          
     </section>
 </section>
-
-    <hr>
     <footer class="footer">
         <div class="copyright_container">
             <p>&copy;Butik 2021</p>
@@ -45,10 +43,10 @@
         <div class="contact_container">
             <h5>Contact us:</h5>
             <ul>
-                <li><a href="#">Instagram</a></li>
+                <li><a id="instagram" href="#">Instagram</a></li>
                 <li><a id="faceboock">Facebook</a></li>
-                <li><a href="mailto:blackcolorent@gmail.com">Email</a></li>
-                <li><a href="tel:+2507810980810">WhatsApp</a></li>
+                <li><a id="email" href="mailto:blackcolorent@gmail.com">Email</a></li>
+                <li><a id="phone" href="tel:+2507810980810">WhatsApp</a></li>
                 <li><a id="aboutUs">About us</a></li>
             </ul>
         </div>

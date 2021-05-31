@@ -22,7 +22,7 @@ h1 {
   align-items: center;
 }
 .markContainer {
-  margin-top: -400px;
+  margin-top: 5px;
 }
 .markDiv {
   padding-top: -6em;
@@ -67,9 +67,9 @@ h1 {
   transform: scale(1.01);
   transition: 0.9s;
 }
-.products {
+.shoesContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
 }
 .image {
@@ -94,6 +94,7 @@ img {
   align-items: center;
   background: rgb(243, 242, 242);
   margin-top: 10px;
+  height: 100%;
 }
 
 .copyright_container p {
