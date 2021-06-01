@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  text-align: center;
+  margin-top: 40px;
+}
+.blackColor {
+  text-align: center;
+}
+.commandSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: gray;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 2%;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.commandImage {
+  margin-top: 5%;
+}
+.commandForm {
+  margin-top: 5%;
+}
+#Shoes {
+  width: 500px;
+  background: rgb(243, 242, 242);
+  border-radius: 2px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+#clientName {
+  width: 30em;
+}
+button {
+  border: none;
+  border-radius: 2px;
+}
+#ClientSubmitButton {
+  margin-top: 20px;
+  width: 15em;
+  background: rgb(242, 242, 242);
+  height: 3em;
+}

@@ -1,4 +1,5 @@
 
+
 // airforce 1 events
 const airfore = document.querySelector("#airForce");
 airfore.addEventListener("click", () => {
@@ -71,6 +72,9 @@ function eventsFunction() {
                     <head>
                     <meta charset="UTF-8">
                     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <script src="https://momowebaccess.mtn.co.ug:8018/v0.1.0/mobile-money-widget-mtn.js"></script>
+                    <link rel="stylesheet" href="/static/command.css">
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>Butik | Pass your command</title>
                     </head>
@@ -81,14 +85,16 @@ function eventsFunction() {
                     </header>
                     <section class="commandSection">
                     <div class="commandImage">
-                    <div id="imgClient">
-                    <img src="/public/${data[0].image}" id="Shoes" alt="image">
+                    <img src="/public/${data[0].image}" id="Shoes" alt="image"><br>
+                    <p shoesDetails>model : ${data[0].model}<br>size : ${data[0].size}<br>price : $${data[0].price}</p>
                     </div>
-                    <div id="details">
-                    <p shoesDetails>model : ${data[0].model}<br>size : ${data[0].size}<br>price : ${data[0].price}</p>
-                    </div>
-                    </div>
+                    
                     <div class="commandForm">
+                    <div class="mobile-money-qr-payment"
+                    data-api-user-id="https://www.uuidgenerator.net/api/version4"
+                    data-amount="30.000"
+                    data-currency="RWF"
+                    data-external-id="144-123-323" ></div>
                     <form action="/command" method="POST">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="clientName" placeholder="name: 2 characters minimum" required>
@@ -97,13 +103,12 @@ function eventsFunction() {
                         <label for="email">Email</label>
                         <input type="email" name="email" id="clientEmail" placeholder="Email adress" required><br>
                         <label for="file">command checked</label>
-                        <input type="text" name="file" id="fileCommanded" readonly>
-                        <p>contry</p>
-                        <label for="congo">Congo DRC</label>
+                        <input type="password" name="file" id="fileCommanded" readonly>
+                        <label for="ClientContry">Congo DRC</label>
                         <input type="radio" name="ClientContry" id="clientContry" value="Congo DRC">
-                        <label for="burundi">Burundi</label>
+                        <label for="ClientContry">Burundi</label>
                         <input type="radio" name="ClientContry" id="clientContry" value="Burundi">
-                        <label for="rwanda">Rwanda</label>
+                        <label for="ClientContry">Rwanda</label>
                         <input type="radio" name="ClientContry" id="clientContry" value="Rwanda"><br>
                         <label for="Phone">Phone Number</label>
                         <input type="tel" name="Phone" id="clientPhone" placeholder="+2439935647365" required>

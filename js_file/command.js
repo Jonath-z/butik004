@@ -4,8 +4,8 @@ var fileCommanded = document.getElementById("fileCommanded");
 const src = imgCommanded.getAttribute("src")
 if (src.indexOf("/public/") >= 0) {
     const file = src.replace("/public/", "");
-    console.log(src);
-    console.log(fileCommanded);
+    // console.log(src);
+    // console.log(fileCommanded);
     fileCommanded.value = `${file}`; 
 }
 

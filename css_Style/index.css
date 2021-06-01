@@ -19,13 +19,18 @@ h1 {
   grid-template-columns: 1fr 3fr;
   grid-gap: 10px;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
-.markContainer {
-  margin-top: -400px;
-}
+/* .markContainer {
+  margin-top: ;
+} */
 .markDiv {
   padding-top: -6em;
+  margin-left: 10px;
+}
+
+h4 {
+  margin-left: 20px;
 }
 #airForce,
 #airJordan1,
@@ -144,4 +149,109 @@ li {
 }
 #email:hover {
   color: #000;
+}
+/* tablet */
+@media (max-width: 1224px) {
+  .products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+  ul {
+    padding-left: 20px;
+    margin-left: 270px;
+  }
+}
+@media (max-width: 1073px) {
+  ul {
+    padding-left: 20px;
+    margin-left: 230px;
+  }
+}
+@media (max-width: 866px) {
+  h5 {
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 865px) {
+  #commandShoes {
+    width: 150px;
+  }
+  .image {
+    width: 150px;
+    background: rgb(243, 242, 242);
+    border-radius: 2px;
+  }
+}
+
+/* phone */
+
+@media (max-width: 500px) {
+  .products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+  .principal {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 5px;
+    justify-content: center;
+    /* align-items: center; */
+  }
+  .image {
+    width: 100px;
+    background: rgb(243, 242, 242);
+    border-radius: 2px;
+  }
+  #commandShoes {
+    width: 100px;
+  }
+  .details {
+    font-size: 10px;
+  }
+  #h4 {
+    margin-left: 0;
+    font-size: small;
+  }
+  #airForce,
+  #airJordan1,
+  #jordan6,
+  #jordan4,
+  #timberland {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .customerCommand {
+    margin-left: 10px;
+  }
+  #customerOpen {
+    border: none;
+    border-radius: 2px;
+    background: rgb(243, 242, 242);
+    font-size: 12px;
+  }
+  #customerOpen:hover {
+    background: grey;
+    transition: s;
+  }
+  .footer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background: rgb(243, 242, 242);
+    margin-top: 10px;
+    font-size: small;
+  }
+  #h5 {
+    font-size: 15px;
+    margin-left: 0;
+  }
+  ul {
+    margin-left: 100px;
+  }
 }
