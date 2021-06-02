@@ -80,12 +80,34 @@ const upload2 = multer({
 
 // get request upload butik page
 app.get('/uploads/butik', (req, res) => {
+    res.render('login');
+});
+
+app.get('/admin/butik', (req, res) => {
     db.collection('commandUser').find({}).toArray((err, data) => {
         res.render("butik", {
             command: data,
             number: data.length,
         });
     });
+});
+// post Admin ckekin
+app.post('/butik/admin/login', (req, res) => {
+    const admin = {
+        name: "butik004",
+        password: "butik0042021"
+    }
+    // console.log(req.body);
+    const pass = req.body.password;
+    const name = req.body.name;
+    if (pass !== admin.password || name !== admin.name) {
+        res.render('login', {
+            text: 'login incorrect'
+        });
+    }
+    else {
+        res.redirect('/admin/butik')
+    }
 });
 
 // get main page

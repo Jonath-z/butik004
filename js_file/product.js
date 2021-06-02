@@ -86,15 +86,8 @@ function eventsFunction() {
                     <section class="commandSection">
                     <div class="commandImage">
                     <img src="/public/${data[0].image}" id="Shoes" alt="image"><br>
-                    <p shoesDetails>model : ${data[0].model}<br>size : ${data[0].size}<br>price : $${data[0].price}</p>
+                    <p class="shoesDetails">${data[0].model}<br>size : ${data[0].size}<br><p id="price">$${data[0].price}</p></p>
                     </div>
-                    
-                    <div class="commandForm">
-                    <div class="mobile-money-qr-payment"
-                    data-api-user-id="https://www.uuidgenerator.net/api/version4"
-                    data-amount="30.000"
-                    data-currency="RWF"
-                    data-external-id="144-123-323" ></div>
                     <form action="/command" method="POST">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="clientName" placeholder="name: 2 characters minimum" required>

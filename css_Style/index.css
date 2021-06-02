@@ -90,6 +90,13 @@ img {
 }
 .details {
   size: 15px;
+  margin-left: 10px;
+}
+#price {
+  text-align: center;
+  background: grey;
+  border-radius: 20px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 .footer {
