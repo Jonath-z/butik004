@@ -39,6 +39,7 @@
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.2.0",
     "serve-favicon": "^2.5.0",
-    "soket.io": "0.0.1-security"
+    "soket.io": "0.0.1-security",
+    "vercel": "^23.0.0"
   }
 }
