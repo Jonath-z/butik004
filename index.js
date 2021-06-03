@@ -17,10 +17,7 @@ const { reject, result, isArguments, conforms } = require('lodash');
 const { stringify } = require('querystring');
 const { MongoClient } = require('mongodb');
 const { MulterError } = require('multer');
-const Sequelize = require('sequelize');
-const { where } = require('sequelize');
 const { POINT_CONVERSION_COMPRESSED } = require('constants');
-const Op = Sequelize.Op;
 const Events = new eventEmitter();
 const favicon = require('serve-favicon');
 const fetch = require('node-fetch');
@@ -361,6 +358,6 @@ app.post('/uploads/butik', upload, (req, res) => {
     res.redirect('/uploads/butik');
 });
 
-app.listen(6579);
+app.listen(6578);
 
 
