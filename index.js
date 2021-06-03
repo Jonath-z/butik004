@@ -361,7 +361,6 @@ app.post('/uploads/butik', upload, (req, res) => {
     res.redirect('/uploads/butik');
 });
 
-
-const server = app.listen(6578);
+app.listen(6579);
 
 
