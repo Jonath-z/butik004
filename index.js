@@ -358,6 +358,7 @@ app.post('/uploads/butik', upload, (req, res) => {
     res.redirect('/uploads/butik');
 });
 
-app.listen(6578);
+const port = process.env.PORT || 6578;
+app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
 
 
