@@ -6,11 +6,10 @@
   "scripts": {
     "start": "node -r dotenv/config index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "build": "jekyll build && mv _site public"
+    "dev": "nodemon index.js"
   },
   "engines": {
-    "node": "14.0.0",
+    "node": "16.2.0",
     "npm": "7.13.0"
   },
   "keywords": [],
