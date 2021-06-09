@@ -13,7 +13,7 @@
     "url": "https://github.com/Jonathan-zihindula/butik004.git"
   },
   "engines": {
-    "node": "16.2.0",
+    "node": "14.x",
     "npm": "7.13.0"
   },
   "keywords": [],
