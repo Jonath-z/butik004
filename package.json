@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "BUTIK 004 is a web application for making command of shoes in Rwanda from certains contries specified. not yet the payement online system. backend with #nodejs frontend with #javaScript #ejs try it and enjoy",
   "main": "index.js",
-  "dependencies": {
+  "scripts": {
+    "start": "node -r dotenv/config index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "license": "ISC",
+    "dependencies": {
     "abort-controller": "^3.0.0",
     "agent-base": "^6.0.2",
     "ajv": "^6.12.6",
@@ -295,15 +302,14 @@
     "yn": "^3.1.1"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "engines": {
+    "node": "14.15.1"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jonathan-zihindula/butik004.git"
   },
   "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Jonathan-zihindula/butik004/issues"
   },
