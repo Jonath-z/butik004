@@ -27,6 +27,7 @@ const { body, validationResult } = require('express-validator');
 const Nexmo = require('nexmo');
 const nodemailer = require('nodemailer');
 const googleAuth = require('google-auth-library');
+const { Console } = require('console');
 
 
 // nexmo init 
