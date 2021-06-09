@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const ejs = require('ejs');
 const multer = require('multer');
@@ -31,8 +32,8 @@ const googleAuth = require('google-auth-library');
 
 // nexmo init 
 const nexmo = new Nexmo({
-    apiKey: 'f27cdd0a',
-    apiSecret: 'jQh8e1rZBFfVDnSG'
+    apiKey: `${process.env.NEXMO_API_KEY}`,
+    apiSecret: `${process.env.NEXMO_API_SECRET}`
 }, { debug: true });
 
 // express init 
@@ -49,7 +50,7 @@ app.use('/public', express.static(path.join('./uploads')));
 app.use('/customers', express.static(path.join('./uploads2')));
 app.use('/static', express.static(path.join('./css_Style')));
 
-const uri = "mongodb+srv://joz:2511@butik.qrb2j.mongodb.net/butik?retryWrites=true&w=majority";
+const uri = `mongodb+srv://joz:${process.env.DB_PASS}@butik.qrb2j.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 // database connection
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -212,9 +213,9 @@ const commande = app.post('/command',
             port: 587,
             secure: false,
             service: 'Gmail',
-            auth: {
-                user: "jonathanzihindula95@gmail.com",
-                pass: "25112002"
+            auth:{
+                user: `${process.env.EMAIL_USER}`,
+                pass: `${process.env.EMAIL_PASS}`
             },
             tls: {
                 rejectUnauthorized: false
@@ -223,7 +224,7 @@ const commande = app.post('/command',
             
         // send mail with defined transport object
         let info = transporter.sendMail({
-            from: '"Butik" <jonathanzihindula95@gmail.com>', // sender address
+            from: `"Butik" <${process.env.EMAIL_USER}>`, // sender address
             to: `"${req.body.email}"`, // list of receivers
             subject: "Command's confirmation", // Subject line
             html: `"<p>Dear ${req.body.name} ${req.body.postName};<br>
@@ -299,8 +300,8 @@ app.post("/customers/command", upload2, (req, res) => {
                 secure: false,
                 service: 'Gmail',
                 auth: {
-                    user: "jonathanzihindula95@gmail.com",
-                    pass: "25112002"
+                    user: `${process.env.EMAIL_USER}`,
+                    pass: `${process.env.EMAIL_PASS}`
                 },
                 tls: {
                     rejectUnauthorized: false
@@ -309,8 +310,8 @@ app.post("/customers/command", upload2, (req, res) => {
             
             // send mail with defined transport object
             let info = transporter.sendMail({
-                from: '"Butik Web" <jonathanzihindula95@gmail.com>', // sender address
-                to: "jonathanzihindula@gmail.com", // list of receivers
+                from: `"Butik Web" <${process.env.EMAIL_USER}>`, // sender address
+                to: `${process.env.ADMIN_MAIL}`, // list of receivers
                 subject: "Special Command", // Subject line
                 // text:
                 html: `"<h1>command from <span>BUTIK 004</span></h1><br>
