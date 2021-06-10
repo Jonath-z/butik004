@@ -112,7 +112,6 @@
     "has-symbol-support-x": "^1.4.2",
     "has-to-string-tag-x": "^1.4.1",
     "here": "^0.0.2",
-    "heroku": "^7.54.0",
     "heroku-cli-util": "^8.0.12",
     "heroku-client": "^3.1.0",
     "heroku-exec-util": "^0.7.5",
