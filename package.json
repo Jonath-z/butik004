@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "license": "ISC",
-    "dependencies": {
+  "dependencies": {
     "abort-controller": "^3.0.0",
     "agent-base": "^6.0.2",
     "ajv": "^6.12.6",
@@ -304,7 +304,7 @@
   "devDependencies": {},
   "engines": {
     "node": "14.15.1"
-    },
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jonathan-zihindula/butik004.git"
