@@ -302,9 +302,6 @@
     "yn": "^3.1.1"
   },
   "devDependencies": {},
-  "engines": {
-    "node": "14.15.1"
-    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jonathan-zihindula/butik004.git"
