@@ -1,7 +1,6 @@
 {
   "name": "butik",
   "version": "1.0.0",
-  "lockfileVersion": 2,
   "description": "BUTIK 004 is a web application for making command of shoes in Rwanda from certains contries specified. not yet the payement online system. backend with #nodejs frontend with #javaScript #ejs try it and enjoy",
   "main": "index.js",
   "scripts": {
@@ -304,6 +303,9 @@
   "devDependencies": {},
   "engines": {
     "node": "14.15.1"
+  },
+  "optionalDependencies": {
+    "fsevents": "~2.3.1"
   },
   "repository": {
     "type": "git",
