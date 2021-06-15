@@ -8,5 +8,8 @@ if (src.indexOf("/public/") >= 0) {
     // console.log(fileCommanded);
     fileCommanded.value = `${file}`; 
 }
+// const conties = document.getElementById("clientContry");
+// const contry = conties.value;
+
 
 

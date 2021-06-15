@@ -28,6 +28,7 @@ const Nexmo = require('nexmo');
 const nodemailer = require('nodemailer');
 const googleAuth = require('google-auth-library');
 const { Console } = require('console');
+const momo = require("mtn-momo");
 
 
 // nexmo init 
@@ -78,7 +79,7 @@ const upload2 = multer({
 
 // get request upload butik page
 app.get('/uploads/butik', (req, res) => {
-    res.render('login');
+    res.redirect('/admin/butik');
 });
 
 app.get('/admin/butik', (req, res) => {
@@ -200,7 +201,7 @@ const commande = app.post('/command',
             "Vonage APIs", number, text, { type: 'unicode' },
             (err, responseData) => {
                 if (err) {
-                    console.log(err);
+                    console.log("err");
                 }
                 else {
                     // console.dir(responseData);
@@ -213,7 +214,7 @@ const commande = app.post('/command',
             port: 587,
             secure: false,
             service: 'Gmail',
-            auth:{
+            auth: {
                 user: `${process.env.EMAIL_USER}`,
                 pass: `${process.env.EMAIL_PASS}`
             },

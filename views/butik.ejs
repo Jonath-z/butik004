@@ -13,19 +13,19 @@
     <form action="/uploads/butik" method="post" enctype="multipart/form-data">
     <div class="uploadingFile">
         <label>Image</label>
-        <input type="file" name="Image" id="File">
+        <input type="file" name="Image" id="File" required>
     </div>
     <div class="uploadingSize">
         <label for="text">size</label>
-        <input type="text" name="size" id="size">    
+        <input type="text" name="size" id="size" required>    
     </div>
     <div class="uploadingModel">
         <label for="model">Model</label>
-        <input type="text" name="model" id="Model">
+        <input type="text" name="model" id="Model" required>
     </div>
     <div>
         <label for="price">Price</label>
-        <input type="number" name="price" id="price">
+        <input type="number" name="price" id="price" required>
     </div>
     <div>
         <button type="submit" id="submit">Post on Butik</button>
