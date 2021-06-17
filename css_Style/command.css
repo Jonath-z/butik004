@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  text-align: center;
+  margin-top: 40px;
+}
+.blackColor {
+  text-align: center;
+}
+.commandSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: gray;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 2%;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.commandImage {
+  margin-top: 5%;
+}
+.commandForm {
+  margin-top: 5%;
+}
+#Shoes {
+  width: 500px;
+  background: rgb(243, 242, 242);
+  border-radius: 2px;
+}
+form {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 30em;
+}
+/* #clientName {
+  width: 30em;
+} */
+button {
+  border: none;
+  border-radius: 2px;
+}
+#ClientSubmitButton {
+  margin-top: 20px;
+  width: 15em;
+  background: rgb(242, 242, 242);
+  height: 3em;
+}
+
+/* media queries */
+@media (max-width: 1295px) {
+  /* #clientName {
+    width: 20em;
+  } */
+  #Shoes {
+    width: 300px;
+    background: rgb(243, 242, 242);
+    border-radius: 2px;
+    margin-top: 3em;
+  }
+  /* form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 20em;
+  } */
+}
+@media (max-width: 1024px) {
+  .commandSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: gray;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 2%;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  #Shoes {
+    width: 300px;
+    background: rgb(243, 242, 242);
+    border-radius: 2px;
+    margin-top: 3em;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  .shoesDetails {
+    text-align: center;
+  }
+  #price {
+    text-align: center;
+    background: rgb(242, 242, 242);
+    border-radius: 20px;
+    margin-left: 40%;
+    margin-right: 40%;
+  }
+}
+@media (max-width: 500px) {
+  .commandSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: gray;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  #Shoes {
+    width: 300px;
+    background: rgb(243, 242, 242);
+    border-radius: 2px;
+    margin-top: 3em;
+    margin-left: 50px;
+  }
+  form {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 25em;
+  }
+}

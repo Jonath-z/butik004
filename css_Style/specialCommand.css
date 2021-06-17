@@ -1,0 +1,54 @@
+body {
+  margin-left: 0;
+  padding: 0;
+  background: gray;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  margin-top: 10px;
+  padding: 20px;
+}
+.formSection {
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 10%;
+  background: rgb(242, 242, 242);
+  border-radius: 3px;
+}
+.contries {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#customerButton {
+  margin-top: 20px;
+  width: 200px;
+  border: none;
+  border-radius: 2px;
+  background: rgb(182, 182, 182);
+}
+#clientContry {
+  margin-left: 5px;
+}
+#clientContryB {
+  margin-left: 40px;
+}
+#clientContryR {
+  margin-left: 35px;
+}
+
+@media (max-width: 500px) {
+  .formSection {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background: rgb(242, 242, 242);
+    border-radius: 3px;
+  }
+  button {
+    margin-right: 10%;
+    margin-left: 15%;
+  }
+}
