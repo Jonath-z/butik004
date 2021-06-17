@@ -57,3 +57,19 @@ b {
 .user {
   width: 300px;
 }
+
+/* butik ejs */
+#SpecialBtn{
+  margin-top: 10px;
+  border: none;
+}
+/* adminSpecial */
+.specialCommand{
+  margin-left: 20%;
+  margin-right: 20%;
+  background: rgb(214, 212, 212);
+}
+#commandShoes{
+  width: 500px;
+}
+
