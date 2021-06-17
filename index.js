@@ -111,7 +111,7 @@ app.post('/butik/admin/login', (req, res) => {
 
 // get main page
 app.get('/', (req, res) => {
-    db.collection("details").find().toArray((err, data) => {
+    db.collection("details").find({}).toArray((err, data) => {
         if (err) {
             console.log("connection problem")
         }
