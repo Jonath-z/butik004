@@ -232,7 +232,7 @@ const commande = app.post('/command',
             from ${req.body.ClientContry};<br>
             your command is received.
             Please send money to +243977473567 if your are in DRC,<br>
-            to +250781980810 if your are in Rwanda <b>to confirm your command</b>,specifying the name and postname enter to command.<br>
+            to +250781980810 if your are in Rwanda <b>to confirm your command</b>,specifying the name and postname entered to command's form.<br>
              <b>Thanks for trusting us, BUTIK 004</b></p>"`, // html body
         });
             
@@ -327,6 +327,40 @@ app.post("/customers/command", upload2, (req, res) => {
                     path: `http://localhost:6578/customers/${obje.image}`
                 }]
             });
+            
+        // send email spacial command to user
+        let transporters = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            service: 'Gmail',
+            auth: {
+                user: `${process.env.EMAIL_USER}`,
+                pass: `${process.env.EMAIL_PASS}`
+            },
+            tls: {
+                rejectUnauthorized: false
+            }
+        });
+        
+        // send mail with defined transport object
+        let information = transporters.sendMail({
+            from: `"Butik Web" <${process.env.EMAIL_USER}>`, // sender address
+            to: `${obje.Email}`, // list of receivers
+            subject: "Special Command", // Subject line
+            // text:
+            html: `"<h1>command from <span>BUTIK 004</span></h1><br>
+                    <p>Name: ${obje.Name} ${obje.PostName}<br>
+                    Phone: ${obje.Phone}<br>
+                    Contry: ${obje.Contry}<br>
+                    Email: ${obje.Email}<br>
+                    Command details: ${obje.Comment}</p>
+                    <p><b>${obje.Date}</b></p>"`, // html body
+            attachments: [{
+                filename: `${obje.image}`,
+                path:  `http://localhost:6578/customers/${obje.image}`
+            }]
+        });
             
             // console.log("Message sent: %s", info.messageId);
             // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));

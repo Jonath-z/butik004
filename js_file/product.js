@@ -3,41 +3,41 @@
 // airforce 1 events
 const airfore = document.querySelector("#airForce");
 airfore.addEventListener("click", () => {
-    window.open("http://localhost:6578/butik/airforce", "_self");
+    window.open("../butik/airforce", "_self");
 });
 
 // jordan 1 events
 
 const jordan1 = document.querySelector("#airJordan1");
 jordan1.addEventListener("click", () => {
-    window.open("http://localhost:6578/butik/jordan1", "_self");
+    window.open("../butik/jordan1", "_self");
 });
 
 // jordan 4 events
 
 const jordan4 = document.querySelector("#jordan4");
 jordan4.addEventListener("click", () => {
-    window.open("http://localhost:6578/butik/jordan4", "_self");
+    window.open("../butik/jordan4", "_self");
 });
 
 // jordan 6 events
 
 const jordan6 = document.querySelector("#jordan6");
 jordan6.addEventListener("click", () => {
-    window.open("http://localhost:6578/butik/jordan6", "_self");
+    window.open("../butik/jordan6", "_self");
 });
 
 // jordan 6 events
 
 const timberland = document.querySelector("#timberland");
 timberland.addEventListener("click", () => {
-    window.open("http://localhost:6578/butik/timberland", "_self");
+    window.open("../butik/timberland", "_self");
 });
 
 // about us 
 const aboutUs = document.querySelector("#aboutUs");
 aboutUs.addEventListener("click", () => {
-    window.open("http://localhost:6578/butik/about","_self");
+    window.open("../butik/about","_self");
 });
 
 // command page 
@@ -45,8 +45,8 @@ const command = document.querySelectorAll("#commandShoes");
 const form = document.querySelector(".form");
 const imgshoes = document.getElementById("Shoes");
 
-const uri1 = "http://localhost:6578/butik/command/render";
-const uri2 = "http://localhost:6578/command";
+const uri1 = "../butik/command/render";
+const uri2 = "../command";
 function eventsFunction() {
     command.forEach(i => {
         i.addEventListener("click", () => {
@@ -66,7 +66,7 @@ function eventsFunction() {
                     return res.json();
                 })
                 .then(data => {
-                    const Window = window.open("http://localhost:6578/butik/command", "_self").document.write(`
+                    const Window = window.open("../butik/command", "_self").document.write(`
                    <!DOCTYPE html>
                     <html lang="en">
                     <head>
@@ -121,5 +121,5 @@ eventsFunction();
 
 const specialCommand = document.getElementById("customerOpen");
 specialCommand.addEventListener("click", () => {
-    window.open("http://localhost:6578/special/command","_self");
+    window.open("../special/command","_self");
 });
