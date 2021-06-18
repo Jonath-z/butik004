@@ -203,7 +203,6 @@ const commande = app.post('/command',
         if (!errors.isEmpty()) {
             res.send("command unsent because of error in command formular");
         }
-
         // message sendind system
         const number = req.body.Phone;
         const text = `Dear ${req.body.name} ${req.body.postName}: command is sent`;
@@ -262,7 +261,7 @@ const commande = app.post('/command',
         const link = db.collection('commandUser').insertOne(user);
         // console.log(today);
         // console.log(user);
-        res.redirect('/');
+        res.redirect("/");
     });
     
   // post request from client

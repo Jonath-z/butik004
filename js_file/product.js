@@ -108,7 +108,7 @@ function eventsFunction() {
                         <button type="submit" id="ClientSubmitButton">Send my Command</button>
                         </form> 
                     </div>
-                    <script src="/statics/product.js"></script>
+                    <script src="/statics/command.js"></script>
                     </body>
                     </html>`);
                     document.close();
@@ -119,17 +119,6 @@ function eventsFunction() {
 }
 eventsFunction();
 
-const imgCommanded = document.getElementById("Shoes");
-var fileCommanded = document.getElementById("fileCommanded");
-const src = imgCommanded.getAttribute("src")
-if (src.indexOf("/public/") >= 0) {
-    const file = src.replace("/public/", "");
-    // console.log(src);
-    // console.log(fileCommanded);
-    fileCommanded.value = `${file}`; 
-}
-// const conties = document.getElementById("clientContry");
-// const contry = conties.value;
 
 const specialCommand = document.getElementById("customerOpen");
 specialCommand.addEventListener("click", () => {
