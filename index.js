@@ -77,6 +77,21 @@ const upload2 = multer({
     storage: storage2
 }).single('Image');
 
+
+// get main page
+app.get('/', (req, res) => {
+    db.collection("details").find({}).toArray((err, data) => {
+        if (err) {
+            console.log("connection problem")
+        }
+        else {
+            res.render('index', {
+                img: data
+            });
+        }
+    });
+});
+
 // get request upload butik page
 app.get('/uploads/butik', (req, res) => {
     res.redirect('/admin/butik');
@@ -109,20 +124,6 @@ app.post('/butik/admin/login', (req, res) => {
     }
 });
 
-// get main page
-app.get('/', (req, res) => {
-    db.collection("details").find({}).toArray((err, data) => {
-        if (err) {
-            console.log("connection problem")
-        }
-        else {
-            res.render('index', {
-                img: data
-            });
-        }
-    });
-
-});
 // get airforce page 
 app.get('/butik/airforce', (req, res) => {
     db.collection("details").find({ "model": /^Air force 1/ }).toArray((err, data) => {
