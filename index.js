@@ -191,7 +191,7 @@ app.get("/special/command/customer", (req, res) => {
 });
 
 // post request for client command
-const commande = app.post('/command',
+ app.post('/command',
     body('email').isEmail().normalizeEmail(),
     body('Phone').isLength({ min: 10 }).isNumeric(),
     body('name').isLength({ min: 2 }),
@@ -302,8 +302,8 @@ app.post("/customers/command", upload2, (req, res) => {
             };
             console.log(obje);
             db.collection('customersCommand').insertOne(obje);
-            // send Email on butik
 
+            // send Email on butik
             let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: 587,
@@ -376,8 +376,6 @@ app.post("/customers/command", upload2, (req, res) => {
 
         }
     });
-    
-
     res.redirect("/");
 });
 
