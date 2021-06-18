@@ -318,10 +318,9 @@ app.post("/customers/command", upload2, (req, res) => {
                 }
             });
             
-            // send mail with defined transport object
             let info = transporter.sendMail({
                 from: `"Butik Web" <${process.env.EMAIL_USER}>`, // sender address
-                to: `${process.env.ADMIN_MAIL}`, // list of receivers
+                to: [`${process.env.ADMIN_MAIL}`,`${obje.Email}`], // list of receivers
                 subject: "New Special Command", // Subject line
                 // text:
                 html: `"<h1>command from <span>BUTIK 004</span></h1><br>
@@ -336,41 +335,6 @@ app.post("/customers/command", upload2, (req, res) => {
                 //     path: `./customers/${obje.image}`
                 // }]
             });
-            
-        // send email spacial command to user
-        let transporters = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 587,
-            secure: false,
-            service: 'Gmail',
-            auth: {
-                user: `${process.env.EMAIL_USER}`,
-                pass: `${process.env.EMAIL_PASS}`
-            },
-            tls: {
-                rejectUnauthorized: false
-            }
-        });
-        
-        // send mail with defined transport object
-        let information = transporters.sendMail({
-            from: `"Butik Web" <${process.env.EMAIL_USER}>`, // sender address
-            to: `${obje.Email}`, // list of receivers
-            subject: "Special Command", // Subject line
-            // text:
-            html: `"<h1>command from <span>BUTIK 004</span></h1><br>
-                    <p>Name: ${obje.Name} ${obje.PostName}<br>
-                    Phone: ${obje.Phone}<br>
-                    Contry: ${obje.Contry}<br>
-                    Email: ${obje.Email}<br>
-                    Command details: ${obje.Comment}</p>
-                    <p><b>${obje.Date}</b></p>"`, // html body
-            // attachments: [{
-            //     filename: `${obje.image}`,
-            //     path:  `./customers/${obje.image}`
-            // }]
-        });
-            
             // console.log("Message sent: %s", info.messageId);
             // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
