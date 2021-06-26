@@ -1,6 +1,10 @@
 
 const file = document.getElementById("customersCommand");
 const prog = document.querySelector("#progress");
+const buttonSubmit = document.getElementById("customerButton");
+buttonSubmit.addEventListener('click', () => {
+    window.open("../", "_self");
+})
 
 
     // firebase config

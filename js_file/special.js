@@ -23,6 +23,9 @@ const realTimeDb = firebase.database();
 // getting file
 
 const buttonSubmit = document.getElementById("submit");
+buttonSubmit.addEventListener('click', () => {
+    window.open("../uploads/butik", "_self");
+})
 const prog = document.querySelector("#progress");
 const file = document.getElementById("File");
 
@@ -39,6 +42,7 @@ const file = document.getElementById("File");
         uploadTask.on("state_changed", function (snapshot) {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             prog.innerHTML = progress + "%";
+
         },
         
             function (err) {
