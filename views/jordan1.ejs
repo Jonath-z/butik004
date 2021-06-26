@@ -34,7 +34,7 @@
                     <% } %>
                     
                         <% shoes.reverse().forEach(i => { %>
-                        <%- `<div class="image"><img src="/public/${i.image}" id="commandShoes" alt="image"><p class="details">${i.model}<br>size: ${i.size}<br><p id="price"><b>$${i.price}</b></p></p></div>` %> 
+                        <%- `<div class="image"><img src="${i.image}" id="commandShoes" alt="image"><p class="details">${i.model}<br>size: ${i.size}<br><p id="price"><b>$${i.price}</b></p></p></div>` %> 
                 <% }) %>
              </section>
     </section>
