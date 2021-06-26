@@ -10,11 +10,7 @@
 </head>
 <body>
     <section class="butikForm">
-    <form action="/uploads/butik" method="post" enctype="multipart/form-data">
-    <div class="uploadingFile">
-        <label>Image</label>
-        <input type="file" name="Image" id="File" required>
-    </div>
+    <form method="POST" enctype="multipart/form-data">
     <div class="uploadingSize">
         <label for="text">size</label>
         <input type="text" name="size" id="size" required>    
@@ -27,6 +23,11 @@
         <label for="price">Price</label>
         <input type="number" name="price" id="price" required>
     </div>
+    <div class="uploadingFile">
+        <label>Image</label>
+        <input type="file" name="Image" id="File" required>
+        <p id="progress"></p>
+    </div>
     <div>
         <button type="submit" id="submit">Post on Butik</button>
     </div>
@@ -38,9 +39,12 @@
         <b>command until here : <%- number %> commands</b>
     </p>
     <% command.reverse().forEach(command => {%>
-       <%- `<div class="userDetails"><div><p class="user">Name: ${command.Name}</p><p class="user">PostName: ${command.PostName} </p><p class="user">Phone: ${command.Phone}</p><p class="user">Email:${command.Email} </p><p class="user">Contry: ${command.Contry}</p><p>Date: ${command.Date}</p></div><div class="userShoes"><img src="/public/${command.Command}" alt="image" class="user"></div></div><hr>` %>
+       <%- `<div class="userDetails"><div><p class="user">Name: ${command.Name}</p><p class="user">PostName: ${command.PostName} </p><p class="user">Phone: ${command.Phone}</p><p class="user">Email:${command.Email} </p><p class="user">Contry: ${command.Contry}</p><p>Date: ${command.Date}</p></div><div class="userShoes"><img src="${command.Command}" alt="image" class="user"></div></div><hr>` %>
         <% })%> 
 </secton>
+ <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
 <script src="/statics/special.js" type="module"></script>
 </body>
 </html>

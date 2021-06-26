@@ -10,9 +10,7 @@
 </head>
 <body>
     <section class="formSection">
-    <form action="/customers/command" method="post" enctype="multipart/form-data">
-    <label for="Image">Import your image</label>
-    <input type="file" name="Image" id="customersCommand">
+    <form enctype="multipart/form-data">
     <label for="name">Name</label>
     <input type="text" name="name" id="clientName" placeholder="name: 2 characters minimum" required>
     <label for="postName">Post-Name</label>
@@ -29,8 +27,15 @@
     <input type="tel" name="Phone" id="clientPhone" placeholder="+2439935647365" required>
     <label for="customersDetails">Details</label>
     <textarea name="customersDetails" id="customersDetails" required></textarea>
+    <label for="Image">Import your image</label>
+    <input type="file" name="Image" id="customersCommand">
+    <p id="progress"></p>
     <button type="submit" id="customerButton">Send my Command</button>
     </form> 
     </section>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script src="/statics/specialCommand.js"></script>
 </body>
 </html>

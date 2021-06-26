@@ -52,8 +52,9 @@ function eventsFunction() {
         i.addEventListener("click", () => {
 
             const data = {
-                'imglink': `${i.getAttribute("src")}`
+              'imglink': `${i.getAttribute("src")}`
             }
+        
             fetch(uri1, {
                 method: "POST",
                 headers: {
@@ -85,8 +86,8 @@ function eventsFunction() {
                     </header>
                     <section class="commandSection">
                     <div class="commandImage">
-                    <img src="/public/${data[0].image}" id="Shoes" alt="image"><br>
-                    <p class="shoesDetails">${data[0].model}<br>size : ${data[0].size}<br><p id="price">$${data[0].price}</p></p>
+                    <img src="${data[0].image}" id="Shoes" alt="image"><br>
+                    <p class="shoesDetails"><p id="details">${data[0].model}<br>size : ${data[0].size}</p><p id="price">$${data[0].price}</p></p>
                     </div>
                     <form action="/command" method="POST">
                         <label for="name">Name</label>

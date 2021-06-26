@@ -11,7 +11,7 @@
 <body>
     <section class="specialCommand">
     <% shoes.reverse().forEach(i => { %>
-        <%- `<div class="image"><img src="/customers/${i.image}" id="commandShoes" alt="image"><p class="details">${i.Name}<br>${i.PostName}<br>${i.Phone}<br>${i.Contry}<br>${i.Email}<br>${i.Comment}<br>${i.Date}</p></div>` %> 
+        <%- `<div class="image"><img src="${i.image}" id="commandShoes" alt="image"><p class="details">${i.Name}<br>${i.PostName}<br>${i.Phone}<br>${i.Contry}<br>${i.Email}<br>${i.Comment}<br>${i.Date}</p><hr></div>` %> 
 <% }) %>
 </section>
 </body>
