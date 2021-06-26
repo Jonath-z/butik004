@@ -10,7 +10,7 @@
 </head>
 <body>
     <section class="butikForm">
-    <form method="POST" enctype="multipart/form-data">
+    <form enctype="multipart/form-data">
     <div class="uploadingSize">
         <label for="text">size</label>
         <input type="text" name="size" id="size" required>    
@@ -39,7 +39,7 @@
         <b>command until here : <%- number %> commands</b>
     </p>
     <% command.reverse().forEach(command => {%>
-       <%- `<div class="userDetails"><div><p class="user">Name: ${command.Name}</p><p class="user">PostName: ${command.PostName} </p><p class="user">Phone: ${command.Phone}</p><p class="user">Email:${command.Email} </p><p class="user">Contry: ${command.Contry}</p><p>Date: ${command.Date}</p></div><div class="userShoes"><img src="${command.Command}" alt="image" class="user"></div></div><hr>` %>
+       <%- `<div class="userDetails"><div><p class="user">Name: ${command.Name}</p><p class="user">PostName: ${command.PostName} </p><p class="user">Phone: ${command.Phone}</p><p class="user">Email:${command.Email} </p><p class="user">Contry: ${command.Contry}</p><p>Date: ${command.Date}</p></div><div class="userShoes"><p class="user">Price: ${command.price} </p><p class="user">Size: ${command.size} </p><p class="user">model: ${command.model} </p><img src="${command.Command}" alt="image" class="user"></div></div><hr>` %>
         <% })%> 
 </secton>
  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>

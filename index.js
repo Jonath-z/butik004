@@ -212,32 +212,33 @@ app.get('/', (req, res) => {
     });
 
     // post request for client command
-    app.post('/command',
-        body('email').isEmail().normalizeEmail(),
-        body('Phone').isLength({ min: 10 }).isNumeric(),
-        body('name').isLength({ min: 2 }),
-        body('postName').isLength({ min: 2 }),
-        body('ClientContry').notEmpty(),
-        upload, (req, res) => {
-            // console.log(req.body);
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                res.send("command unsent because of error in command formular");
-            }
-            // message sendind system
-            const number = req.body.Phone;
-            const text = `Dear ${req.body.name} ${req.body.postName}: command is sent`;
-            nexmo.message.sendSms(
-                "Vonage APIs", number, text, { type: 'unicode' },
-                (err, responseData) => {
-                    if (err) {
-                        console.log("err");
-                    }
-                    else {
-                        // console.dir(responseData);
-                    }
+app.post('/command',
+    body('email').isEmail().normalizeEmail(),
+    body('Phone').isLength({ min: 10 }).isNumeric(),
+    body('name').isLength({ min: 2 }),
+    body('postName').isLength({ min: 2 }),
+    body('ClientContry').notEmpty(),
+    upload, (req, res) => {
+        // console.log(req.body);
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            res.send("command unsent because of error in command formular");
+        }
+        // message sendind system
+        const number = req.body.Phone;
+        const text = `Dear ${req.body.name} ${req.body.postName}: command is sent`;
+        nexmo.message.sendSms(
+            "Vonage APIs", number, text, { type: 'unicode' },
+            (err, responseData) => {
+                if (err) {
+                    console.log("err");
                 }
-            );
+                else {
+                    // console.dir(responseData);
+                }
+            }
+        );
+        db.collection("details").find({ "image": `${req.body.file}` }).toArray((err, data) => {
             // mail sending system
             let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
@@ -261,7 +262,7 @@ app.get('/', (req, res) => {
                 html: `"<p>Dear ${req.body.name} ${req.body.postName};<br>
             from ${req.body.ClientContry};<br>
             your command is received.
-            Please send money to +243977473567 if your are in DRC,<br>
+            Please send ${data[0].price}$ to +243977473567 if your are in DRC,<br>
             to +250781980810 if your are in Rwanda <b>to confirm your command</b>,specifying the name and postname entered to the command's form.<br>
              <b>Thanks for trusting us, BUTIK 004</b></p>"`,// html body
                 attachments: [{
@@ -269,26 +270,31 @@ app.get('/', (req, res) => {
                     path: `${req.body.file}`
                 }]
             });
-            
+        },
             
             // console.log("Message sent: %s", info.messageId);
             // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-
-            let today = new Date();
-            const user = {
-                Name: req.body.name,
-                PostName: req.body.postName,
-                Phone: req.body.Phone,
-                Contry: req.body.ClientContry,
-                Email: req.body.email,
-                Command: req.body.file,
-                Date: today
-            }
-            const link = db.collection('commandUser').insertOne(user);
-            // console.log(today);
-            // console.log(user);
-            res.redirect("/");
-        });
+            db.collection("details").find({ "image": `${req.body.file}` }).toArray((err, data) => {
+                console.log(data);
+                let today = new Date();
+                const user = {
+                    Name: req.body.name,
+                    PostName: req.body.postName,
+                    Phone: req.body.Phone,
+                    Contry: req.body.ClientContry,
+                    Email: req.body.email,
+                    Command: req.body.file,
+                    price: data[0].price,
+                    size: data[0].size,
+                    model: data[0].model,
+                    Date: today
+                }
+                const link = db.collection('commandUser').insertOne(user);
+                // console.log(today);
+                // console.log(user)
+            }));
+        res.redirect("/");
+    });
     
     // post request from client
     app.post("/butik/command/render", (req, res) => {
