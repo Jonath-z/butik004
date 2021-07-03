@@ -254,7 +254,7 @@ app.post('/command',
             // send mail with defined transport object
             let info = transporter.sendMail({
                 from: `"Butik" <${process.env.EMAIL_USER}>`, // sender address
-                to: `"${req.body.email}"`, // list of receivers
+                to: [`"${req.body.email}"`,`${process.env.ADMIN_MAIL}`], // list of receivers
                 subject: "Command's confirmation", // Subject line
                 html: `"<p>Dear ${req.body.name} ${req.body.postName};<br>
             from ${req.body.ClientContry};<br>
@@ -364,7 +364,7 @@ app.post('/command',
 
     // post request butik
 app.post('/uploads/butik',upload,(req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     res.redirect('/uploads/butik');
     
 });
