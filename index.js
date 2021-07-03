@@ -33,10 +33,6 @@ const momo = require("mtn-momo");
 const firebase = require("firebase");
 const googleStorage = require('@google-cloud/storage');
 const admin = require('firebase-admin');
-const serviceAccount = require('./service-account-file.json');
-// const { Firestore } = require('@google-cloud/firestore');
-
-
 
 // express init 
 const app = express();
@@ -98,6 +94,7 @@ const storage2 = multer.diskStorage({
 const upload2 = multer({
     storage: storage2
 }).single('Image');
+
 // get main page
 app.get('/', (req, res) => {
     db.collection("details").find({}).toArray((err, data) => {
