@@ -19,7 +19,7 @@ form {
   padding-top: 20em;
   padding-bottom: 20em;
   width: 30em;
-  position: fixed;
+  /* position: fixed; */
 }
 #size,
 #Model,
@@ -34,6 +34,7 @@ button {
   margin-top: 20px;
   height: 3em;
   background: rgb(242, 242, 242);
+  border-radius: 5px;
 }
 #submit:hover {
   background: rgb(199, 199, 199);
@@ -71,5 +72,65 @@ b {
 }
 #commandShoes{
   width: 500px;
+}
+
+@media(max-width: 500px){
+  body {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+  }
+  .butikForm {
+    background: gray;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 25px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    /* width: 25em; */
+  }
+  #size,
+  #Model {
+    width: 20em;
+  }
+
+  .uploadingModel,
+  .uploadingSize{
+    display: flex;
+    flex-direction: column;
+  }
+  #price {
+    margin-top: 20px;
+    width: 17.5em;
+  }
+.uploadingFile{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+  .userDetails {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  #SpecialBtn{
+    margin-top: 20px;
+    border: none;
+    width: 5em;
+    border-radius: 5px;
+  }
+  .reportCommand {
+    background: rgb(250, 246, 246);
+    width: 100%;
+  }
+  .butikForm {
+    width: 100%;
+    background: gray;
+  }
 }
 

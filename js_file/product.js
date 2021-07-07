@@ -125,3 +125,13 @@ const specialCommand = document.getElementById("customerOpen");
 specialCommand.addEventListener("click", () => {
     window.open("../special/command","_self");
 });
+
+// admin login 
+const loginAdmin = document.getElementById('login');
+loginAdmin.addEventListener('click', () => {
+    window.open('../login');
+});
+loginAdmin.style.marginTop = '10px';
+loginAdmin.style.border = 'none';
+loginAdmin.style.width = '69px';
+loginAdmin.style.fontSize = 'small'

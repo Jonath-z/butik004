@@ -110,6 +110,11 @@ app.get('/', (req, res) => {
     });
 });
 
+// admin login
+app.get('/login', (req, res) => {
+    res.render('login');
+})
+
     // get request upload butik page
     app.get('/uploads/butik', (req, res) => {
         res.redirect('/admin/butik');
@@ -117,7 +122,7 @@ app.get('/', (req, res) => {
 
     app.get('/admin/butik', (req, res) => {
         db.collection('commandUser').find({}).toArray((err, data) => {
-            res.render("butik", {
+         res.render("butik", {
                 command: data,
                 number: data.length,
             });

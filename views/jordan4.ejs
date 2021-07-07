@@ -26,10 +26,11 @@
             </div>
             <div class="customerCommand">
               <button type="submit" id="customerOpen">Special Command here</button>
+              <button type="button" id="login">Admin</button>
             </div>
         </div>
             <section class="shoesContainer">
-                <% if (shoes == undefined) { %>
+                <% if (shoes === `undefined`) { %>
                     <%- `<p class= "Paraundefined">The Shoes witch your are looking for is not available now !` %> 
                     <% } %>
                     
